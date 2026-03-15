@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fabrega Consultores | Contabilidad para Negocios Digitales</title>
+    <style>
+        /* --- ESTILOS BASE (ESTILO APPLE) --- */
+        :root {
+            --bg-color: #f5f5f7;
+            --text-main: #1d1d1f;
+            --text-muted: #86868b;
+            --apple-blue: #0071e3;
+            --apple-blue-hover: #0077ED;
+            --card-bg: #ffffff;
+            --nav-bg: rgba(255, 255, 255, 0.8);
+            --border-radius-lg: 30px;
+            --border-radius-md: 18px;
+            --font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* --- NAVEGACIÓN --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 980px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 20px;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 14px;
+            font-weight: 400;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            opacity: 1;
+            font-weight: 600;
+        }
+
+        /* --- BOTONES --- */
+        .btn {
+            display: inline-block;
+            background: var(--apple-blue);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 999px; /* Estilo píldora */
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: var(--apple-blue-hover);
+            transform: scale(1.02);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--apple-blue);
+            border: 1px solid var(--apple-blue);
+        }
+
+        .btn-outline:hover {
+            background: rgba(0, 113, 227, 0.1);
+            color: var(--apple-blue);
+        }
+
+        /* --- ESTRUCTURA DE PÁGINAS (SPA) --- */
+        main {
+            padding-top: 80px; /* Espacio para el nav */
+            min-height: 100vh;
+        }
+
+        .page-section {
+            display: none;
+            animation: fadeIn 0.5s ease-out forwards;
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- TIPOGRAFÍA Y UTILIDADES --- */
+        h1 {
+            font-size: 56px;
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            line-height: 1.05;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 40px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        p.subtitle {
+            font-size: 24px;
+            color: var(--text-muted);
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+            font-weight: 400;
+        }
+
+        .text-center { text-align: center; }
+        .mt-4 { margin-top: 40px; }
+
+        /* --- SECCIÓN INICIO (EMBUDO) --- */
+        .hero {
+            text-align: center;
+            padding: 40px 0 80px 0;
+        }
+
+        .hero-images-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 900px;
+            margin: 60px auto;
+        }
+
+        .capsule-img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            background-color: #e5e5ea;
+            border-radius: var(--border-radius-lg);
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 14px;
+            overflow: hidden;
+        }
+
+        /* --- TABLA DE PRECIOS (BUENO, FEO, MALO) --- */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 60px;
+            align-items: center;
+        }
+
+        .price-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius-lg);
+            padding: 40px 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            text-align: left;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .price-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .price-card.featured {
+            border: 2px solid var(--apple-blue);
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(0,113,227,0.15);
+            z-index: 1;
+        }
+
+        .price-card.featured:hover {
+            transform: scale(1.05) translateY(-5px);
+        }
+
+        .badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--apple-blue);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .price-title { font-size: 24px; font-weight: 600; margin-bottom: 10px; }
+        .price-amount { font-size: 48px; font-weight: 700; margin-bottom: 5px; letter-spacing: -1px;}
+        .price-amount span { font-size: 18px; color: var(--text-muted); font-weight: 400;}
+        
+        /* Value Stack Styles */
+        .value-stack { margin-top: 20px; margin-bottom: 30px; }
+        .value-item { 
+            display: flex; justify-content: space-between; 
+            padding: 8px 0; border-bottom: 1px solid #eee; font-size: 14px; 
+        }
+        .value-item:last-child { border-bottom: none; }
+        .value-strike { color: var(--text-muted); text-decoration: line-through; }
+        .total-value { 
+            background: #f5f5f7; padding: 15px; border-radius: 12px; 
+            margin-top: 15px; text-align: center;
+        }
+        .total-value-strike { font-size: 18px; color: #ff3b30; text-decoration: line-through; font-weight: 600; display: block;}
+        .total-value-final { font-size: 28px; color: #34c759; font-weight: 700; }
+
+        /* --- SECCIÓN REGALO (LEAD MAGNET) --- */
+        .lead-magnet-box {
+            background: var(--card-bg);
+            border-radius: var(--border-radius-lg);
+            padding: 60px;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        .form-group {
+            display: flex;
+            gap: 10px;
+            max-width: 500px;
+            margin: 30px auto 0 auto;
+        }
+
+        input[type="email"], input[type="text"] {
+            flex: 1;
+            padding: 15px 20px;
+            border-radius: var(--border-radius-md);
+            border: 1px solid #d2d2d7;
+            font-size: 16px;
+            font-family: var(--font-family);
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input[type="email"]:focus, input[type="text"]:focus {
+            border-color: var(--apple-blue);
+        }
+
+        /* --- SECCIÓN HISTORIA --- */
+        .story-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 50px;
+            border-radius: var(--border-radius-lg);
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .story-container p { margin-bottom: 20px; }
+
+        /* --- SERVICIOS EXTRA --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 900px;
+            margin: 40px auto;
+        }
+        .service-item {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: var(--border-radius-md);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 40px; }
+            h2 { font-size: 32px; }
+            p.subtitle { font-size: 18px; }
+            
+            .nav-links { display: none; /* En un proyecto real aquí iría un menú hamburguesa */ }
+            .mobile-menu-hint { display: block; font-size: 12px; color: var(--apple-blue); }
+            
+            .hero-images-grid { grid-template-columns: repeat(2, 1fr); }
+            .pricing-grid { grid-template-columns: 1fr; gap: 40px; }
+            .price-card.featured { transform: scale(1); }
+            .price-card.featured:hover { transform: translateY(-5px); }
+            
+            .form-group { flex-direction: column; }
+            .services-grid { grid-template-columns: 1fr; }
+            
+            .nav-container { flex-direction: column; gap: 10px; }
+            .nav-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVEGACIÓN -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a class="logo" onclick="switchTab('inicio')">Fabrega.</a>
+            <div class="nav-links">
+                <a onclick="switchTab('inicio')" id="nav-inicio" class="active">Inicio</a>
+                <a onclick="switchTab('regalo')" id="nav-regalo">Regalo Gratis</a>
+                <a onclick="switchTab('servicios')" id="nav-servicios">Servicios</a>
+                <a onclick="switchTab('historia')" id="nav-historia">Mi Historia</a>
+                <a onclick="switchTab('contacto')" id="nav-contacto">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- 1. SECCIÓN INICIO (EMBUDO DE VENTAS) -->
+        <section id="inicio" class="page-section active">
+            <div class="hero">
+                <h1>🧠💵🪄<br>Mas estrategia<br>Menos impuestos<br>Más plata para tu negocio</h1>
+                <p class="subtitle">Si tiene un negocio online o digital, tu contador clásico te está <strong>costando caro.</strong> Descubre los vacíos legales que los "boomers" ignoran, te asesoramos con trucos y tips que los contadores "de la vieja escuela" no aplican y te estan <strong>perjudicando</strong>. De esta forma te hacemos pagar <strong>menos impuestos</strong> y mejorar tu <strong>flujo de dinero mensual.</strong></p>
+                <a onclick="switchTab('contacto')" class="btn">Agendar Asesoría Gratis (30 min)</a>
+                <p style="margin-top: 15px; font-size: 13px; color: var(--text-muted);">En esta primera asesoría gratuita puedes resolver todas tus dudas <strong>(solo hay cupos 4 al mes).</strong> </p>
+                
+                <!-- Las 4 fotos encapsuladas estilo Apple -->
+                <div class="hero-images-grid">
+                    <div class="capsule-img" style="background-image: url('https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&q=80&w=400');">[Foto Dyllan 1]</div>
+                    <div class="capsule-img" style="background-image: url('https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=400');">[Foto Dyllan 2]</div>
+                    <div class="capsule-img" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=400');">[Foto Dyllan 3]</div>
+                    <div class="capsule-img" style="background-image: url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=400');">[Foto Dyllan 4]</div>
+                </div>
+            </div>
+
+            <div id="agenda" style="padding-top: 40px;">
+                <h2>Elige el mejor plan según tus necesidades.</h2>
+                <p class="subtitle">La mayoría de nuestros clientes lograron ahorrar entre $70.000 y $185.000 al mes eligiendo estratégicamente los beneficios que da la ley a los negocios digitales.</p>
+
+                <div class="pricing-grid">
+                    <!-- EL FEO (Ancla inferior) -->
+                    <div class="price-card">
+                        <div class="price-title">El Básico</div>
+                        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 20px;">Para los que les gusta vivir al límite con el SII y solo quieren que les declaren el F29 sin hacer preguntas.</p>
+                        <div class="price-amount">$51.000<span>/mes</span></div>
+                        <div class="value-stack" style="opacity: 0.6;">
+                            <div class="value-item"><span>Declaración F29</span></div>
+                            <div class="value-item"><span>Solo reunion inicial</span></div>
+                            <div class="value-item"><span>Rezas si te fiscalizan</span></div>
+                        </div>
+                        <button class="btn btn-outline" style="width: 100%;" onclick="switchTab('contacto')">Me gusta sufrir</button>
+                    </div>
+
+                    <!-- EL BUENO (La oferta irresistible) -->
+                    <div class="price-card featured">
+                        <div class="badge">SOLO HAY 3 CUPOS AL MES</div>
+                        <div class="price-title">El Inteligente</div>
+                        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 20px;">Todo lo que un negocio digital necesita para optimizar impuestos, aumentar su flujo de caja y dormir en paz.</p>
+                        
+                        <div class="value-stack">
+                            <div class="value-item"><span>Registro de compras y ventas</span> <span class="value-strike">$40.000</span></div>
+                            <div class="value-item"><span>Declaración de impuestos F29</span> <span class="value-strike">$40.000</span></div>
+                            <div class="value-item"><span>Asesorias directo por WhatsApp</span> <span class="value-strike">$100.000</span></div>
+                            <div class="value-item"><span>Reporte mensual de impuestos y finanzas</span> <span class="value-strike">Invaluable</span></div>
+                        </div>
+
+                        <div class="total-value">
+                            <span style="font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted);">Valor Real</span>
+                            <span class="total-value-strike">$180.000 /mes</span>
+                            <span style="font-size: 12px; margin-top: 5px; display: block;">Tu precio hoy:</span>
+                            <div class="total-value-final">$59.000<span>/mes</span></div>
+                        </div>
+                        
+                        <button class="btn" style="width: 100%; margin-top: 20px;" onclick="switchTab('contacto')">Agendar mi reunión</button>
+                    </div>
+
+                    <!-- EL MALO (Ancla superior) -->
+                    <div class="price-card">
+                        <div class="price-title">El Avanzado</div>
+                        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 20px;">Okey, como ya te imaginaras este plan esta pensado para negocios que están en el siguiente nivel, agenda una reunión para verificar si calificas.</p>
+                        <div class="price-amount">$210.000<span>/mes</span></div>
+                        <div class="value-stack">
+                            <div class="value-item"><span>Todo lo de "El Inteligente"</span></div>
+                            <div class="value-item"><span>Liquidaciones de sueldo + Control flujo de caja</span></div>
+                            <div class="value-item"><span>Tramites presenciales + Videollamadas semanales</span></div>
+                        </div>
+                        <button class="btn btn-outline" style="width: 100%;" onclick="switchTab('contacto')">Soy Elon Musk</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. SECCIÓN REGALO GRATIS -->
+        <section id="regalo" class="page-section">
+            <div class="lead-magnet-box">
+                <h2>El video que el SII<br>no quiere que veas.</h2>
+                <p class="subtitle" style="margin-bottom: 20px;">7 secretos 100% legales para bajar los impuestos de negocio digital o negocio online. Déjanos tu correo y te lo mandamos apenas se suba.</p>
+                <p style="font-size: 14px; color: var(--text-muted);">*Prometemos no enviarte spam. Nos da tanta lata como a ti. Solo cosas útiles.*</p>
+                
+                <form onsubmit="event.preventDefault(); alert('¡Gracias! Te avisaremos cuando el canal de YouTube se cree.');" class="form-group">
+                    <input type="text" placeholder="Tu nombre" required>
+                    <input type="email" placeholder="Tu mejor correo" required>
+                    <button type="submit" class="btn">Quiero el Video Gratis</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- 3. SECCIÓN SERVICIOS -->
+        <section id="servicios" class="page-section">
+            <h2>Nuestros Servicios.</h2>
+            <p class="subtitle">Aparte de nuestros planes mensuales, hacemos trabajos quirúrgicos para tu empresa.</p>
+            
+            <div class="services-grid">
+                <div class="service-item">
+                    <h3 style="font-size: 20px; margin-bottom: 10px;">Constitución de Empresa</h3>
+                    <p style="color: var(--text-muted); font-size: 15px;">Tu SpA o EIRL lista en tiempo récord. Te dejamos todo configurado en el SII para que empieces a facturar sin equivocarte desde el día 1.</p>
+                </div>
+                <div class="service-item">
+                    <h3 style="font-size: 20px; margin-bottom: 10px;">Asesoría Financiera y de Costos</h3>
+                    <p style="color: var(--text-muted); font-size: 15px;">Para que dejes de adivinar si tu ROAS te está dejando ganancias reales. Calculamos tus márgenes exactos después de impuestos.</p>
+                </div>
+                <div class="service-item">
+                    <h3 style="font-size: 20px; margin-bottom: 10px;">Regularización Tributaria</h3>
+                    <p style="color: var(--text-muted); font-size: 15px;">¿Tu contador anterior dejó la escoba? Lo arreglamos. Evitamos multas y ordenamos la casa antes de que el fisco toque a tu puerta.</p>
+                </div>
+                <div class="service-item">
+                    <h3 style="font-size: 20px; margin-bottom: 10px;">Declaración de Renta Anual</h3>
+                    <p style="color: var(--text-muted); font-size: 15px;">Ese mes del año que todos odian, nosotros lo amamos. Optimizamos tu declaración anual para recuperar lo máximo posible.</p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <a onclick="switchTab('inicio')" class="btn">Ver planes mensuales</a>
+            </div>
+        </section>
+
+        <!-- 4. SECCIÓN MI HISTORIA -->
+        <section id="historia" class="page-section">
+            <h2>Hola, soy Dyllan Fabrega.</h2>
+            <p class="subtitle">Y sí, soy Contador Auditor de la PUCV.</p>
+            
+            <div class="story-container">
+                <p>Quizás estes pensando por que debería elegir a este tipo para que me ayude a pagar mis impuestos ¿Qué tal es Fabrega Consultores? La realidad se que me he especializado en Negocios Digitales y los problemas se repiten.</p>
+                
+                <p>Trabajé 2 años en empresas de contabilidad tradicionales. Ahí me percaté de algo casi terrorífico: <strong><em>los contadores clásicos, de mucha edad, desconocían por completo las formas en que tributan las empresas digitales de hoy.</em></strong></p>
+                
+                <p>No saben cómo se rinde un gasto de Facebook Ads sin factura chilena, no entienden el modelo de dropshipping de Shopify, ni cómo un coach online recibe pagos por Stripe y así otros 100 pequeños detalles. <strong>¿El resultado? Hacían que los emprendedores pagaran de más al Estado por puro desconocimiento. (Entre $70.000 y $185.000 al mes en el peor de los casos)</strong></p>
+                
+                <p>Por eso creé esta consultora. <strong>Mi objetivo es que los negocios online en Chile paguen la menor cantidad de impuestos posibles de forma 100% legal</strong> y de esta forma con las dinero en la cuneta corriente puedan crecer e impulsar su empresa al siguiente nivel y por consecuencia mejorar la economía del país. </p>
+                
+                <p>Lo que yo vendo no es "hacer contabilidad". Lo que yo te vendo es que vas a <strong>ahorrar dinero y ganar flujo de caja</strong> gracias a que conozco los secretos y trucos modernos que sí funcionan.</p>
+
+                <div class="text-center mt-4">
+                    <a onclick="switchTab('contacto')" class="btn">Hablemos de tu negocio</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. SECCIÓN CONTACTO -->
+        <section id="contacto" class="page-section">
+            <h2>Escríbenos.</h2>
+            <p class="subtitle">Contestamos rápido (a menos que estemos salvando a un cliente de una fiscalización).</p>
+
+            <div class="story-container text-center" style="max-width: 500px;">
+                <p style="font-size: 20px; font-weight: 600; margin-bottom: 30px;">Agendemos una asesoría de 30 minutos 100% gratis donde resolveré todas tus dudas (Solo 4 cupos al mes).</p>
+                
+                <a href="https://wa.me/56971902656" target="_blank" class="btn" style="width: 100%; margin-bottom: 15px; background-color: #25D366;">
+                    WhatsApp +569 7190 2656
+                </a>
+                
+                <a href="mailto:Dyllan.fabrega@gmail.com" class="btn btn-outline" style="width: 100%; margin-bottom: 15px;">
+                    Dyllan.Fabrega@gmail.com
+                </a>
+                
+                <a href="#" class="btn btn-outline" style="width: 100%; color: #1d1d1f; border-color: #d2d2d7;">
+                    Síguenos en Instagram @dyllan_fabrega
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- LOGIC PARA EL CAMBIO DE PESTAÑAS (SPA) -->
+    <script>
+        function switchTab(tabId) {
+            // 1. Ocultar todas las secciones
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // 2. Mostrar la sección seleccionada
+            const targetSection = document.getElementById(tabId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+                // Scroll al tope de la página
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // 3. Actualizar estado activo en el navbar
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            const activeLink = document.getElementById('nav-' + tabId);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
