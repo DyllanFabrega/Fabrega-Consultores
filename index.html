@@ -69,6 +69,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 10px 20px;
+            transition: all 0.3s ease;
         }
 
         .logo {
@@ -80,6 +81,7 @@
         .logo img {
             height: 35px;
             width: auto;
+            transition: height 0.3s ease;
         }
 
         .nav-links {
@@ -137,7 +139,7 @@
         .btn-mini {
             background: var(--apple-orange);
             color: white;
-            padding: 8px 20px; /* Aumentado para mejor impacto */
+            padding: 8px 20px;
             border-radius: 20px;
             font-size: 12px;
             font-weight: 600;
@@ -279,7 +281,7 @@
         .price-amount { font-size: 48px; font-weight: 700; margin-bottom: 5px; letter-spacing: -1px;}
         .price-amount span { font-size: 18px; color: var(--text-muted); font-weight: 400;}
         
-        .value-stack { margin-top: 25px; margin-bottom: 20px; } /* Ajustado margen inferior */
+        .value-stack { margin-top: 25px; margin-bottom: 20px; }
         .value-item { 
             display: flex; justify-content: space-between; 
             padding: 14px 0; 
@@ -652,24 +654,48 @@
             font-weight: 400;
         }
 
-        /* --- RESPONSIVE --- */
+        /* --- RESPONSIVE OPTIMIZADO PARA MÓVIL --- */
         @media (max-width: 768px) {
-            h1 { font-size: 38px; }
-            h2 { font-size: 30px; }
-            p.subtitle { font-size: 18px; }
+            /* Navbar Móvil Compacta */
+            nav {
+                padding: 0;
+            }
+            .nav-container {
+                padding: 6px 15px; /* Menos padding vertical */
+                flex-direction: row;
+                justify-content: space-between;
+                height: 54px; /* Altura fija compacta */
+            }
+            .logo img {
+                height: 24px; /* Logo más pequeño */
+            }
+            .nav-links {
+                gap: 10px; /* Enlaces más juntos */
+                font-size: 10.5px; /* Texto más pequeño */
+                flex-wrap: nowrap; /* Evitar saltos de línea bruscos */
+            }
+            .nav-links a {
+                font-size: 10.5px;
+            }
+            main {
+                padding-top: 64px; /* Ajuste para la navbar reducida */
+            }
+
+            h1 { font-size: 34px; letter-spacing: -1px; }
+            h2 { font-size: 28px; }
+            p.subtitle { font-size: 17px; }
+            
             .hero-images-grid { grid-template-columns: repeat(2, 1fr); }
-            .pricing-grid { grid-template-columns: 1fr; gap: 40px; }
+            .pricing-grid { grid-template-columns: 1fr; gap: 30px; }
             .testimonial-grid { grid-template-columns: 1fr; }
-            .chat-screenshots-grid { grid-template-columns: 1fr; max-width: 100%; }
+            .chat-screenshots-grid { grid-template-columns: 1fr; }
             .price-card.featured { transform: scale(1); }
-            .not-for-you-card { padding: 30px; }
-            .nav-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; font-size: 12px; }
-            .nav-container { flex-direction: column; gap: 10px; }
+            .not-for-you-card { padding: 25px; }
             .services-grid { grid-template-columns: 1fr; }
             .explanation-capsule { padding: 25px; }
-            .marquee-item { font-size: 18px; }
-            .modal-content { padding: 25px; }
-            .btn-mini { margin-left: 0; padding: 6px 14px; font-size: 11px; }
+            .marquee-item { font-size: 16px; }
+            .modal-content { padding: 20px; }
+            .btn-mini { padding: 6px 16px; font-size: 10px; width: 100%; box-sizing: border-box; }
         }
     </style>
 </head>
@@ -683,16 +709,16 @@
             </a>
             <div class="nav-links">
                 <a onclick="switchTab('inicio')" id="nav-inicio" class="active">Inicio</a>
-                <a onclick="switchTab('regalo')" id="nav-regalo">Regalo Gratis</a>
+                <a onclick="switchTab('regalo')" id="nav-regalo">Regalo</a>
                 <a onclick="switchTab('servicios')" id="nav-servicios">Servicios</a>
-                <a onclick="switchTab('historia')" id="nav-historia">¿Quien soy?</a>
+                <a onclick="switchTab('historia')" id="nav-historia">Yo</a>
                 <a onclick="switchTab('contacto')" id="nav-contacto">Contacto</a>
             </div>
         </div>
     </nav>
 
     <main>
-        <!-- 1. SECCIÓN INICIO (EMBUDO DE VENTAS) -->
+        <!-- 1. SECCIÓN INICIO -->
         <section id="inicio" class="page-section active">
             <div class="hero">
                 <h1>🧠💵<br>Mas estrategia<br>Menos impuestos<br>Más plata para tu negocio</h1>
@@ -702,7 +728,6 @@
                 <a onclick="switchTab('contacto')" class="btn">Agendar Asesoría Gratis (30 min)</a>
                 <p style="margin-top: 15px; font-size: 13px; color: var(--text-muted);">En esta primera asesoría gratuita puedes resolver todas tus dudas <strong>(solo hay cupos 4 al mes).</strong> </p>
                 
-                <!-- Las 4 fotos encapsuladas estilo Apple -->
                 <div class="hero-images-grid">
                     <div class="capsule-img" style="background-image: url('image_981217.jpg');"></div>
                     <div class="capsule-img" style="background-image: url('image_980de1.jpg');"></div>
@@ -739,7 +764,6 @@
                             <div class="value-item"><span>Reporte de impuestos y finanzas</span> <span class="value-strike">$60.000</span></div>
                         </div>
                         
-                        <!-- BOTÓN VER EJEMPLO CENTRADO -->
                         <div style="text-align: center; margin-bottom: 25px;">
                             <button class="btn-mini" onclick="openModal()">Ver ejemplo de reporte</button>
                         </div>
@@ -766,7 +790,6 @@
                     </div>
                 </div>
 
-                <!-- CÁPSULA EXPLICATIVA DE PRECIOS -->
                 <div class="explanation-capsule">
                     <h3>¿Por que el plan inteligente esta a ese precio?</h3>
                     <p>Buena pregunta, primero que todo al ser un asesor online no pago una oficina lujosa en Las Condes ni tengo secretarias. Soy un asesor tributario que opera 100% digital. Mis costos operativos son mínimos y prefiero traspasar ese ahorro a tu bolsillo por el momento, ademas he diseñado un sistema donde la carga técnica pesada está automatizada.</p>
@@ -777,7 +800,7 @@
                 </div>
             </div>
 
-            <!-- SECCIÓN TESTIMONIOS -->
+            <!-- TESTIMONIOS -->
             <div class="testimonials-section">
                 <h2>TESTIMONIOS ¿Qué dicen nuestros clientes?</h2>
                 <div class="testimonial-grid">
@@ -815,13 +838,11 @@
                     </div>
                 </div>
 
-                <!-- FOTOS CHAT WHATSAPP -->
                 <div class="chat-screenshots-grid">
                     <img src="Opinion1.jpg" alt="Testimonio WhatsApp 1" class="chat-img">
                     <img src="Opinion2.jpg" alt="Testimonio WhatsApp 2" class="chat-img">
                 </div>
 
-                <!-- NUEVA SECCIÓN: MARQUEE MODELOS DE NEGOCIO -->
                 <div class="business-models-section">
                     <h2>Modelo de negocios con los que hemos trabajado:</h2>
                     <p class="text-center" style="color: var(--text-muted); margin-bottom: 20px;">Los tipos de negocios que hemos ayudado:</p>
@@ -838,6 +859,7 @@
                             <span class="marquee-item">Freelancers</span>
                             <span class="marquee-item">Cursos Online</span>
                             <span class="marquee-item">Mentorías y Coaching</span>
+                            <!-- Duplicado -->
                             <span class="marquee-item">Dropshipping</span>
                             <span class="marquee-item">E-commerce</span>
                             <span class="marquee-item">SaaS</span>
@@ -854,7 +876,7 @@
                 </div>
             </div>
 
-            <!-- SECCIÓN NEGATIVA (NO ES PARA TI SI...) -->
+            <!-- FILTRO -->
             <div class="not-for-you-section">
                 <h2>Este servicio NO es para ti si:</h2>
                 <div class="not-for-you-card">
@@ -862,22 +884,18 @@
                         <h4>Buscas inventar números o evadir:</h4>
                         <p>No arriesgo a mis clientes, yo me especializo en optimización tributaria legal. Si tu plan es ocultar ingresos o hacer cosas fuera de la ley, hay miles de contadores "de la vieja escuela" que se arriesgan por ti. Yo uso la ley a tu favor para que duermas tranquilo.</p>
                     </div>
-
                     <div class="not-for-you-item">
                         <h4>Tienes un negocio 100% físico y análogo:</h4>
                         <p>Si facturas en papel o tienes procesos manuales del siglo pasado, no soy tu mejor opción. Mi sistema está diseñado para negocios digitales.</p>
                     </div>
-
                     <div class="not-for-you-item">
                         <h4>Ves la contabilidad como un "gasto" y no como una inversión:</h4>
                         <p>Si te duele pagar $59.000 por un servicio que te puede ahorrar impuestos, evitar multas y bloqueos, mejorar tu flujo de caja y dar claridad de tus finanzas, entonces todavía no entiendes lo que es tener un negocio de verdad.</p>
                     </div>
-
                     <div class="not-for-you-item">
                         <h4>No usas tecnología:</h4>
                         <p>Si no sabes usar una videollamada, WhatsApp o plataformas digitales para subir tu información, mi metodología de trabajo te va a frustrar. Yo automatizo lo aburrido para enfocarme en lo importante.</p>
                     </div>
-
                     <div class="not-for-you-item" style="margin-bottom: 0;">
                         <h4>Buscas al contador "más barato" del mercado:</h4>
                         <p>El contador más barato suele ser el que más caro te sale cuando el SII te fiscaliza (multas, bloqueos de ventas, dolores de cabeza). Yo cobro por el valor de mi asesoría y el flujo de dinero que pongo de vuelta en tu bolsillo, no por llenar un formulario.</p>
@@ -885,7 +903,6 @@
                 </div>
             </div>
 
-            <!-- FOOTER LEGAL DE SECCIÓN INICIO -->
             <footer>
                 <div class="footer-divider"></div>
                 <div class="footer-content">
@@ -897,7 +914,7 @@
             </footer>
         </section>
 
-        <!-- 2. SECCIÓN REGALO GRATIS -->
+        <!-- 2. SECCIÓN REGALO -->
         <section id="regalo" class="page-section">
             <div class="lead-magnet-box">
                 <h2>El video que el SII<br>no quiere que veas.</h2>
@@ -937,42 +954,30 @@
             </div>
         </section>
 
-        <!-- 4. SECCIÓN MI HISTORIA -->
+        <!-- 4. SECCIÓN HISTORIA -->
         <section id="historia" class="page-section">
             <h2>Hola, soy Dyllan Fabrega.</h2>
             <p class="subtitle">Y sí, soy Contador Auditor de la PUCV.</p>
-            
             <div class="story-container">
                 <img src="image_97b424.jpg" alt="Dyllan Fabrega" class="history-profile-pic">
-                
                 <p>Si estas aqui probablemente te estes preguntando ¿Por que debería elegir a este tipo para que me ayude a pagar mis impuestos? Te daré la respuesta corta: Porque el sistema contable tradicional está roto para los negocios digitales.</p>
-                
                 <p>Trabajé 2 años en empresas de contabilidad tradicionales. Ahí me percaté de algo casi terrorífico: <strong><em>los contadores clásicos, de mucha edad, desconocían por completo las formas en que tributan las empresas digitales de hoy.</em></strong></p>
-                
                 <p>No saben cómo se rinde un gasto de Facebook Ads sin factura chilena, no entienden el modelo de dropshipping de Shopify, ni cómo un coach online recibe pagos por Stripe y así otros 100 pequeños detalles. <strong>¿El resultado? Hacían que los emprendedores pagaran de más al Estado por puro desconocimiento. (Entre $70.000 y $185.000 al mes en el peor de los casos)</strong></p>
-                
                 <p>Por eso creé esta consultora. <strong>Mi objetivo es que los negocios online en Chile paguen la menor cantidad de impuestos posibles de forma 100% legal</strong> y de esta forma con las dinero en la cuneta corriente puedan crecer e impulsar su empresa al siguiente nivel y por consecuencia mejorar la economía del país. </p>
-                
                 <p>Lo que yo vendo no es "hacer contabilidad". Lo que yo te vendo es que vas a <strong>ahorrar dinero y ganar flujo de caja</strong> gracias a que conozco los secretos y trucos modernos que sí funcionan.</p>
-
-                <!-- SECCIÓN DE VALIDACIÓN -->
                 <div class="validation-capsule">
                     <p style="font-weight: 600; margin-bottom: 15px;">Validación de Título Profesional</p>
                     <p>Puedes validar mi título profesional en la página oficial de la PUCV haciendo clic aquí:</p>
                     <a href="https://certificados.ucv.cl" target="_blank" class="btn" style="font-size: 14px; margin-bottom: 20px;">certificados.ucv.cl</a>
-                    
                     <div style="text-align: left; background: white; padding: 15px; border-radius: 12px; display: inline-block; margin-bottom: 20px; border: 1px solid #eee;">
                         <p style="margin-bottom: 5px;"><strong>Número de certificado:</strong> 1721697</p>
                         <p style="margin-bottom: 0;"><strong>Verificador:</strong> cd0f243d90</p>
                     </div>
-
                     <hr style="border: 0; border-top: 1px solid #d2d2d7; margin: 20px 0;">
-                    
                     <a href="https://www.linkedin.com/in/dyllan-fabrega" target="_blank" class="btn btn-outline" style="width: 100%; font-size: 14px;">
                         Ver mi Perfil en LinkedIn
                     </a>
                 </div>
-
                 <div class="text-center mt-4">
                     <a onclick="switchTab('contacto')" class="btn">Hablemos de tu negocio</a>
                 </div>
@@ -983,18 +988,14 @@
         <section id="contacto" class="page-section">
             <h2>Escríbenos.</h2>
             <p class="subtitle">Contestamos rápido (a menos que estemos salvando a un cliente de una fiscalización).</p>
-
             <div class="story-container text-center" style="max-width: 500px;">
                 <p style="font-size: 20px; font-weight: 600; margin-bottom: 30px;">Agendemos una asesoría de 30 minutos 100% gratis donde resolveré todas tus dudas (Solo 4 cupos al mes).</p>
-                
                 <a href="https://wa.me/56971902656" target="_blank" class="btn" style="width: 100%; margin-bottom: 15px; background-color: #25D366;">
                     WhatsApp +569 7190 2656
                 </a>
-                
                 <a href="mailto:Dyllan.fabrega@gmail.com" class="btn btn-outline" style="width: 100%; margin-bottom: 15px;">
                     Dyllan.Fabrega@gmail.com
                 </a>
-                
                 <a href="https://instagram.com/dyllan_fabrega" target="_blank" class="btn btn-outline" style="width: 100%; color: #1d1d1f; border-color: #d2d2d7;">
                     Instagram @dyllan_fabrega
                 </a>
@@ -1007,7 +1008,7 @@
         <div class="modal-content" onclick="event.stopPropagation()">
             <button class="modal-close" onclick="closeModal(event)">✕</button>
             <h2 style="font-size: 24px; margin-bottom: 20px; text-align: left;">Ejemplo de Reporte Estratégico</h2>
-            <img src="imagendeejemplo.jpeg" alt="Ejemplo de Reporte Fabrega Consultores" class="modal-img">
+            <img src="imagendeejemplo.jpg" alt="Ejemplo de Reporte" class="modal-img">
             <div class="modal-description">
                 <p><strong>¿Por qué este reporte es de muy muy alto valor?</strong></p>
                 <p style="margin-top: 10px;">Este reporte es de muy alto valor porque te entrega claridad absoluta sobre la salud financiera de tu negocio. No es solo un resumen del SII; es una herramienta de toma de decisiones que te muestra el ROAS real después de impuestos, tus márgenes de utilidad netos y una proyección de caja para que nunca te quedes sin liquidez. Con esto, dejas de adivinar y empiezas a dirigir tu empresa con datos reales y estrategia contable de primer nivel.</p>
