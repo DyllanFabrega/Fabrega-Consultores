@@ -26,6 +26,7 @@
             --text-muted: #86868b;
             --apple-blue: #0071e3;
             --apple-blue-hover: #0077ED;
+            --apple-orange: #f76902;
             --card-bg: #ffffff;
             --nav-bg: rgba(255, 255, 255, 0.8);
             --border-radius-lg: 30px;
@@ -131,6 +132,27 @@
         .btn-outline:hover {
             background: rgba(0, 113, 227, 0.1);
             color: var(--apple-blue);
+        }
+
+        .btn-mini {
+            background: var(--apple-orange);
+            color: white;
+            padding: 8px 20px; /* Aumentado para mejor impacto */
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 10px rgba(247, 105, 2, 0.2);
+        }
+
+        .btn-mini:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+            box-shadow: 0 6px 15px rgba(247, 105, 2, 0.3);
         }
 
         /* --- ESTRUCTURA DE PÁGINAS (SPA) --- */
@@ -257,10 +279,15 @@
         .price-amount { font-size: 48px; font-weight: 700; margin-bottom: 5px; letter-spacing: -1px;}
         .price-amount span { font-size: 18px; color: var(--text-muted); font-weight: 400;}
         
-        .value-stack { margin-top: 20px; margin-bottom: 30px; }
+        .value-stack { margin-top: 25px; margin-bottom: 20px; } /* Ajustado margen inferior */
         .value-item { 
             display: flex; justify-content: space-between; 
-            padding: 8px 0; border-bottom: 1px solid #eee; font-size: 14px; 
+            padding: 14px 0; 
+            border-bottom: 1px solid #f2f2f2; font-size: 14px; 
+            align-items: center;
+        }
+        .value-item:last-child {
+            border-bottom: none;
         }
         .value-strike { color: var(--text-muted); text-decoration: line-through; }
         .total-value { 
@@ -269,6 +296,31 @@
         }
         .total-value-strike { font-size: 18px; color: #ff3b30; text-decoration: line-through; font-weight: 600; display: block;}
         .total-value-final { font-size: 28px; color: #34c759; font-weight: 700; }
+
+        /* Cápsula de Explicación de Precios */
+        .explanation-capsule {
+            background: var(--card-bg);
+            border-radius: var(--border-radius-lg);
+            padding: 40px;
+            margin: 40px auto;
+            max-width: 900px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            text-align: left;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .explanation-capsule h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+
+        .explanation-capsule p {
+            font-size: 16px;
+            color: var(--text-main);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
 
         /* --- TESTIMONIOS --- */
         .testimonials-section {
@@ -301,10 +353,25 @@
             line-height: 1.6;
         }
 
+        .testimonial-footer {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
         .testimonial-author {
             font-weight: 700;
             font-size: 14px;
             color: var(--text-main);
+            margin: 0;
+        }
+
+        .testimonial-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
         .stars {
@@ -332,6 +399,154 @@
 
         .chat-img:hover {
             transform: scale(1.03);
+        }
+
+        /* --- MARQUEE (BUSINESS MODELS) --- */
+        .business-models-section {
+            margin-top: 80px;
+            overflow: hidden;
+            background: var(--card-bg);
+            padding: 60px 0;
+            border-radius: var(--border-radius-lg);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+        }
+
+        .marquee-container {
+            width: 100%;
+            display: flex;
+            overflow: hidden;
+            position: relative;
+            margin-top: 30px;
+        }
+
+        .marquee-content {
+            display: flex;
+            white-space: nowrap;
+            animation: scroll-left 30s linear infinite;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .marquee-item {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: -0.5px;
+            transition: color 0.3s;
+        }
+
+        .marquee-item:hover {
+            color: var(--apple-blue);
+        }
+
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* --- MODAL (POPUP) --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: var(--border-radius-lg);
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            animation: modalScale 0.3s ease-out;
+        }
+
+        @keyframes modalScale {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #eee;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-img {
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .modal-description {
+            font-size: 17px;
+            line-height: 1.6;
+            color: var(--text-main);
+        }
+
+        /* --- SECCIÓN NEGATIVA (NO ES PARA TI SI...) --- */
+        .not-for-you-section {
+            margin: 80px auto;
+            max-width: 900px;
+        }
+
+        .not-for-you-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius-lg);
+            padding: 50px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            border: 1px solid rgba(255, 59, 48, 0.1);
+        }
+
+        .not-for-you-item {
+            margin-bottom: 30px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .not-for-you-item::before {
+            content: "✕";
+            position: absolute;
+            left: 0;
+            color: #ff3b30;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .not-for-you-item h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .not-for-you-item p {
+            font-size: 15px;
+            color: var(--text-muted);
+            line-height: 1.5;
         }
 
         /* --- SECCIÓN REGALO --- */
@@ -414,6 +629,29 @@
             border-radius: var(--border-radius-md);
         }
 
+        /* --- FOOTER LEGAL (ESTILO APPLE) --- */
+        footer {
+            max-width: 980px;
+            margin: 60px auto 40px auto;
+            padding: 0 20px;
+        }
+
+        .footer-content {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .footer-divider {
+            border-top: 1px solid rgba(0,0,0,0.1);
+            margin: 15px 0;
+            width: 100%;
+        }
+
+        .footer-copyright {
+            font-weight: 400;
+        }
+
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
             h1 { font-size: 38px; }
@@ -424,9 +662,14 @@
             .testimonial-grid { grid-template-columns: 1fr; }
             .chat-screenshots-grid { grid-template-columns: 1fr; max-width: 100%; }
             .price-card.featured { transform: scale(1); }
+            .not-for-you-card { padding: 30px; }
             .nav-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; font-size: 12px; }
             .nav-container { flex-direction: column; gap: 10px; }
             .services-grid { grid-template-columns: 1fr; }
+            .explanation-capsule { padding: 25px; }
+            .marquee-item { font-size: 18px; }
+            .modal-content { padding: 25px; }
+            .btn-mini { margin-left: 0; padding: 6px 14px; font-size: 11px; }
         }
     </style>
 </head>
@@ -470,34 +713,40 @@
 
             <div id="agenda" style="padding-top: 40px;">
                 <h2>Elige el mejor plan según tus necesidades.</h2>
-                <p class="subtitle">La mayoría de nuestros clientes lograron ahorrar entre $70.000 y $185.000 al mes eligiendo estratégicamente los beneficios que da la ley a los negocios digitales.</p>
+                <p class="subtitle">La mayoría de nuestros clientes lograron ahorrar entre $70.000 y $180.000 al mes eligiendo estratégicamente los beneficios que da la ley a los negocios digitales.</p>
 
                 <div class="pricing-grid">
                     <div class="price-card">
                         <div class="price-title">El Básico</div>
                         <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 20px;">Para los que les gusta vivir al límite con el SII y solo quieren que les declaren el F29 sin hacer preguntas.</p>
                         <div class="price-amount">$51.000<span>/mes</span></div>
-                        <div class="value-stack" style="opacity: 0.6;">
+                        <div class="value-stack">
                             <div class="value-item"><span>Declaración F29</span></div>
                             <div class="value-item"><span>Solo reunion inicial</span></div>
                             <div class="value-item"><span>Rezas si te fiscalizan</span></div>
                         </div>
-                        <button class="btn btn-outline" style="width: 100%;" onclick="switchTab('contacto')">Agendar mi reunión</button>
+                        <button class="btn btn-outline" style="width: 100%;" onclick="switchTab('contacto')">Me gusta sufrir</button>
                     </div>
 
                     <div class="price-card featured">
                         <div class="badge">SOLO HAY 3 CUPOS AL MES</div>
                         <div class="price-title">El Inteligente</div>
-                        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 20px;">Todo lo que un negocio digital necesita para optimizar impuestos, aumentar su flujo de caja y dormir en paz.</p>
+                        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 20px;">Todo lo que un negocio digital necesita para menos impuestos, aumentar su flujo de dinero y dormir en paz.</p>
                         <div class="value-stack">
-                            <div class="value-item"><span>Registro de compras y ventas</span> <span class="value-strike">$40.000</span></div>
-                            <div class="value-item"><span>Declaración de impuestos F29</span> <span class="value-strike">$40.000</span></div>
-                            <div class="value-item"><span>Asesorias directo por WhatsApp</span> <span class="value-strike">$100.000</span></div>
-                            <div class="value-item"><span>Reporte mensual de impuestos y finanzas</span> <span class="value-strike">Invaluable</span></div>
+                            <div class="value-item"><span>Registro de compras y ventas</span> <span class="value-strike">$15.000</span></div>
+                            <div class="value-item"><span>Declaración de impuestos F29</span> <span class="value-strike">$50.000</span></div>
+                            <div class="value-item"><span>Asesorias estrategicas por WhatsApp</span> <span class="value-strike">$60.000</span></div>
+                            <div class="value-item"><span>Reporte de impuestos y finanzas</span> <span class="value-strike">$60.000</span></div>
                         </div>
+                        
+                        <!-- BOTÓN VER EJEMPLO CENTRADO -->
+                        <div style="text-align: center; margin-bottom: 25px;">
+                            <button class="btn-mini" onclick="openModal()">Ver ejemplo de reporte</button>
+                        </div>
+
                         <div class="total-value">
                             <span style="font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted);">Valor Real</span>
-                            <span class="total-value-strike">$180.000 /mes</span>
+                            <span class="total-value-strike">$185.000 /mes</span>
                             <span style="font-size: 12px; margin-top: 5px; display: block;">Tu precio hoy:</span>
                             <div class="total-value-final">$59.000<span>/mes</span></div>
                         </div>
@@ -506,15 +755,25 @@
 
                     <div class="price-card">
                         <div class="price-title">El Avanzado</div>
-                        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 20px;">Pensado para negocios que están en el siguiente nivel, agenda una reunión para verificar si calificas.</p>
-                        <div class="price-amount">$210.000<span>/mes</span></div>
+                        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 20px;">Pensado para medianas empresas con muchos movimientos, que están en el siguiente nivel, agenda una reunión para verificar si calificas.</p>
+                        <div class="price-amount">$200.000<span>/mes</span></div>
                         <div class="value-stack">
                             <div class="value-item"><span>Todo lo de "El Inteligente"</span></div>
-                            <div class="value-item"><span>Liquidaciones + Control flujo caja</span></div>
-                            <div class="value-item"><span>Tramites presenciales + Videollamadas</span></div>
+                            <div class="value-item"><span>Liquidaciones de sueldos</span></div>
+                            <div class="value-item"><span>Asesoria mensual por videollamadas</span></div>
                         </div>
                         <button class="btn btn-outline" style="width: 100%;" onclick="switchTab('contacto')">Soy Elon Musk</button>
                     </div>
+                </div>
+
+                <!-- CÁPSULA EXPLICATIVA DE PRECIOS -->
+                <div class="explanation-capsule">
+                    <h3>¿Por que el plan inteligente esta a ese precio?</h3>
+                    <p>Buena pregunta, primero que todo al ser un asesor online no pago una oficina lujosa en Las Condes ni tengo secretarias. Soy un asesor tributario que opera 100% digital. Mis costos operativos son mínimos y prefiero traspasar ese ahorro a tu bolsillo por el momento, ademas he diseñado un sistema donde la carga técnica pesada está automatizada.</p>
+                    <p>Eso me permite dedicar mi tiempo a lo que realmente importa: <strong>tu estrategia para pagar menos impuestos legalmente</strong>, en lugar de perder horas picando datos y ahora estoy seleccionando a los próximos 3 negocios digitales que quiero ayudar a escalar este mes. Mi objetivo es que tu satisfacción sea tan grande que trabajemos juntos en el largo plazo.</p>
+                    <p style="background: rgba(0, 113, 227, 0.05); padding: 15px; border-radius: 12px; border-left: 4px solid var(--apple-blue);">
+                        <strong>⚠️ Aviso:</strong> En algunos periodos de alta demandan se genera una lista de espera de un par de meses, así que aprovecha, solo acepto 3 personas al mes para mantener la calidad del servicio.
+                    </p>
                 </div>
             </div>
 
@@ -527,7 +786,10 @@
                             <div class="stars">★★★★★</div>
                             <p class="testimonial-text">"Al fin alguien que entiende de cripto sin hablarme en 'chino'. Dyllan me aclaró todo el tema de impuestos de criptomonedas de forma súper simple y me ahorró millones en multas por declarar mal mis movimientos. Responde al minuto por WhatsApp y te da una tranquilidad impagable para seguir operando."</p>
                         </div>
-                        <p class="testimonial-author">- Vicente C</p>
+                        <div class="testimonial-footer">
+                            <p class="testimonial-author">- Vicente C</p>
+                            <img src="vicente.jpeg" alt="Vicente C" class="testimonial-avatar">
+                        </div>
                     </div>
 
                     <div class="testimonial-card">
@@ -535,7 +797,10 @@
                             <div class="stars">★★★★★</div>
                             <p class="testimonial-text">"Dyllan es seco. Mi e-commerce era un caos y él ordenó los pagos online muy rápido, siempre contesta al instante y me explica el IVA de forma clara, sin tecnicismos raros. Gracias a que me cambie de regimen hoy pago menos impuestos"</p>
                         </div>
-                        <p class="testimonial-author">- Amanda G</p>
+                        <div class="testimonial-footer">
+                            <p class="testimonial-author">- Amanda G</p>
+                            <img src="amanda.jpeg" alt="Amanda G" class="testimonial-avatar">
+                        </div>
                     </div>
 
                     <div class="testimonial-card">
@@ -543,25 +808,100 @@
                             <div class="stars">★★★★★</div>
                             <p class="testimonial-text">"Lo que más valoro es que Dyllan no desaparece al preguntarle algo, Entiende mi modelo de negocio de agencia de marketing y me soluciona dudas de facturación al extranjero en segundos, siempre con la mejor disposición. Sus consejos financieros han sido clave para ahorrar una locura en impuestos este año."</p>
                         </div>
-                        <p class="testimonial-author">- Tomás M</p>
+                        <div class="testimonial-footer">
+                            <p class="testimonial-author">- Tomás M</p>
+                            <img src="tomas.jpeg" alt="Tomás M" class="testimonial-avatar">
+                        </div>
                     </div>
                 </div>
 
-                <!-- NUEVA SECCIÓN: FOTOS CHAT WHATSAPP -->
+                <!-- FOTOS CHAT WHATSAPP -->
                 <div class="chat-screenshots-grid">
                     <img src="Opinion1.jpg" alt="Testimonio WhatsApp 1" class="chat-img">
                     <img src="Opinion2.jpg" alt="Testimonio WhatsApp 2" class="chat-img">
                 </div>
+
+                <!-- NUEVA SECCIÓN: MARQUEE MODELOS DE NEGOCIO -->
+                <div class="business-models-section">
+                    <h2>Modelo de negocios con los que hemos trabajado:</h2>
+                    <p class="text-center" style="color: var(--text-muted); margin-bottom: 20px;">Los tipos de negocios que hemos ayudado:</p>
+                    <div class="marquee-container">
+                        <div class="marquee-content">
+                            <span class="marquee-item">Dropshipping</span>
+                            <span class="marquee-item">E-commerce</span>
+                            <span class="marquee-item">SaaS</span>
+                            <span class="marquee-item">Infoproductos</span>
+                            <span class="marquee-item">Agencias de Marketing Digital</span>
+                            <span class="marquee-item">Media Buyers</span>
+                            <span class="marquee-item">Traders</span>
+                            <span class="marquee-item">Creadores de Contenido</span>
+                            <span class="marquee-item">Freelancers</span>
+                            <span class="marquee-item">Cursos Online</span>
+                            <span class="marquee-item">Mentorías y Coaching</span>
+                            <span class="marquee-item">Dropshipping</span>
+                            <span class="marquee-item">E-commerce</span>
+                            <span class="marquee-item">SaaS</span>
+                            <span class="marquee-item">Infoproductos</span>
+                            <span class="marquee-item">Agencias de Marketing Digital</span>
+                            <span class="marquee-item">Media Buyers</span>
+                            <span class="marquee-item">Traders</span>
+                            <span class="marquee-item">Creadores de Contenido</span>
+                            <span class="marquee-item">Freelancers</span>
+                            <span class="marquee-item">Cursos Online</span>
+                            <span class="marquee-item">Mentorías y Coaching</span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <p style="margin-top: 30px; text-align: center; font-size: 13px; color: var(--text-muted);"><em>Nota: Valores expresados en pesos chilenos aproximados (basados en UF).</em></p>
+            <!-- SECCIÓN NEGATIVA (NO ES PARA TI SI...) -->
+            <div class="not-for-you-section">
+                <h2>Este servicio NO es para ti si:</h2>
+                <div class="not-for-you-card">
+                    <div class="not-for-you-item">
+                        <h4>Buscas inventar números o evadir:</h4>
+                        <p>No arriesgo a mis clientes, yo me especializo en optimización tributaria legal. Si tu plan es ocultar ingresos o hacer cosas fuera de la ley, hay miles de contadores "de la vieja escuela" que se arriesgan por ti. Yo uso la ley a tu favor para que duermas tranquilo.</p>
+                    </div>
+
+                    <div class="not-for-you-item">
+                        <h4>Tienes un negocio 100% físico y análogo:</h4>
+                        <p>Si facturas en papel o tienes procesos manuales del siglo pasado, no soy tu mejor opción. Mi sistema está diseñado para negocios digitales.</p>
+                    </div>
+
+                    <div class="not-for-you-item">
+                        <h4>Ves la contabilidad como un "gasto" y no como una inversión:</h4>
+                        <p>Si te duele pagar $59.000 por un servicio que te puede ahorrar impuestos, evitar multas y bloqueos, mejorar tu flujo de caja y dar claridad de tus finanzas, entonces todavía no entiendes lo que es tener un negocio de verdad.</p>
+                    </div>
+
+                    <div class="not-for-you-item">
+                        <h4>No usas tecnología:</h4>
+                        <p>Si no sabes usar una videollamada, WhatsApp o plataformas digitales para subir tu información, mi metodología de trabajo te va a frustrar. Yo automatizo lo aburrido para enfocarme en lo importante.</p>
+                    </div>
+
+                    <div class="not-for-you-item" style="margin-bottom: 0;">
+                        <h4>Buscas al contador "más barato" del mercado:</h4>
+                        <p>El contador más barato suele ser el que más caro te sale cuando el SII te fiscaliza (multas, bloqueos de ventas, dolores de cabeza). Yo cobro por el valor de mi asesoría y el flujo de dinero que pongo de vuelta en tu bolsillo, no por llenar un formulario.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FOOTER LEGAL DE SECCIÓN INICIO -->
+            <footer>
+                <div class="footer-divider"></div>
+                <div class="footer-content">
+                    <p>Los planes están sujetos a disponibilidad. Los valores están expresados en pesos chilenos aproximados (basados en UF) y no consideran el IVA del servicio.</p>
+                    <p>Dirección: Fiestas Patrias 2223, Quillota, Valparaíso, Chile</p>
+                    <div class="footer-divider"></div>
+                    <p class="footer-copyright">Copyright © 2026 Fabrega Consultores. Todos los derechos reservados.</p>
+                </div>
+            </footer>
         </section>
 
         <!-- 2. SECCIÓN REGALO GRATIS -->
         <section id="regalo" class="page-section">
             <div class="lead-magnet-box">
                 <h2>El video que el SII<br>no quiere que veas.</h2>
-                <p class="subtitle" style="margin-bottom: 20px;">7 secretos 100% legales para bajar los impuestos de negocio digital o negocio online. Déjanos tu correo y te lo mandamos apenas se suba.</p>
+                <p class="subtitle">7 secretos 100% legales para bajar los impuestos de negocio digital o negocio online. Déjanos tu correo y te lo mandamos apenas se suba.</p>
                 <form onsubmit="event.preventDefault(); alert('¡Inscrito! Te avisaremos apenas el canal de YouTube esté listo.');" class="form-group">
                     <input type="text" placeholder="Tu nombre" required>
                     <input type="email" placeholder="Tu mejor correo" required>
@@ -622,7 +962,7 @@
                     <a href="https://certificados.ucv.cl" target="_blank" class="btn" style="font-size: 14px; margin-bottom: 20px;">certificados.ucv.cl</a>
                     
                     <div style="text-align: left; background: white; padding: 15px; border-radius: 12px; display: inline-block; margin-bottom: 20px; border: 1px solid #eee;">
-                        <p style="margin-bottom: 5px;"><strong>Número de certificado:</strong> 1.721.697</p>
+                        <p style="margin-bottom: 5px;"><strong>Número de certificado:</strong> 1721697</p>
                         <p style="margin-bottom: 0;"><strong>Verificador:</strong> cd0f243d90</p>
                     </div>
 
@@ -662,6 +1002,22 @@
         </section>
     </main>
 
+    <!-- POPUP MODAL -->
+    <div id="exampleModal" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal(event)">✕</button>
+            <h2 style="font-size: 24px; margin-bottom: 20px; text-align: left;">Ejemplo de Reporte Estratégico</h2>
+            <img src="imagendeejemplo.jpg" alt="Ejemplo de Reporte Fabrega Consultores" class="modal-img">
+            <div class="modal-description">
+                <p><strong>¿Por qué este reporte es de muy muy alto valor?</strong></p>
+                <p style="margin-top: 10px;">Este reporte es de muy alto valor porque te entrega claridad absoluta sobre la salud financiera de tu negocio. No es solo un resumen del SII; es una herramienta de toma de decisiones que te muestra el ROAS real después de impuestos, tus márgenes de utilidad netos y una proyección de caja para que nunca te quedes sin liquidez. Con esto, dejas de adivinar y empiezas a dirigir tu empresa con datos reales y estrategia contable de primer nivel.</p>
+            </div>
+            <div class="text-center mt-4">
+                <button class="btn" onclick="closeModal(event); switchTab('contacto');">¡Quiero este reporte mensual!</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         function switchTab(tabId) {
             const sections = document.querySelectorAll('.page-section');
@@ -677,6 +1033,16 @@
             navLinks.forEach(link => link.classList.remove('active'));
             const activeLink = document.getElementById('nav-' + tabId);
             if (activeLink) activeLink.classList.add('active');
+        }
+
+        function openModal() {
+            document.getElementById('exampleModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(e) {
+            document.getElementById('exampleModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
         }
     </script>
 </body>
