@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- FAVICON -->
-    <link rel="icon" type="image/jpeg" href="logosolito.png">
+    <link rel="icon" type="image/png" href="logosolito.png">
     
     <!-- SEO OPTIMIZATION -->
     <title>Fabrega Consultores | Contador para Negocios Digitales Chile</title>
@@ -134,6 +134,17 @@
         .btn-outline:hover {
             background: rgba(0, 113, 227, 0.1);
             color: var(--apple-blue);
+        }
+
+        .btn-neutral {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid #d2d2d7;
+        }
+
+        .btn-neutral:hover {
+            background: #f5f5f7;
+            border-color: #86868b;
         }
 
         .btn-mini {
@@ -298,6 +309,63 @@
         }
         .total-value-strike { font-size: 18px; color: #ff3b30; text-decoration: line-through; font-weight: 600; display: block;}
         .total-value-final { font-size: 28px; color: #34c759; font-weight: 700; }
+
+        /* CÁPSULA PROMOCIONAL (HORMOZI STYLE) */
+        .hormozi-offer {
+            background: #ffffff;
+            border-radius: var(--border-radius-lg);
+            padding: 40px;
+            margin: 60px auto 40px auto;
+            max-width: 900px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+            border: 2px solid #34c759; /* Verde éxito sutil */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hormozi-offer::before {
+            content: "OFERTA IMBATIBLE";
+            position: absolute;
+            top: 15px;
+            right: -35px;
+            background: #34c759;
+            color: white;
+            padding: 8px 45px;
+            font-size: 10px;
+            font-weight: 900;
+            transform: rotate(35deg);
+        }
+
+        .promo-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+
+        .promo-tag {
+            color: #34c759;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .promo-title {
+            font-size: 32px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin: 10px 0;
+            color: var(--text-main);
+        }
+
+        .value-pill {
+            background: rgba(52, 199, 89, 0.1);
+            color: #1a7f37;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 13px;
+        }
 
         /* Cápsula de Explicación de Precios */
         .explanation-capsule {
@@ -562,22 +630,6 @@
             box-shadow: 0 10px 40px rgba(0,0,0,0.08);
         }
 
-        .form-group {
-            display: flex;
-            gap: 10px;
-            max-width: 500px;
-            margin: 30px auto 0 auto;
-        }
-
-        input[type="email"], input[type="text"] {
-            flex: 1;
-            padding: 15px 20px;
-            border-radius: var(--border-radius-md);
-            border: 1px solid #d2d2d7;
-            font-size: 16px;
-            outline: none;
-        }
-
         /* --- SECCIÓN HISTORIA --- */
         .story-container {
             max-width: 800px;
@@ -656,35 +708,15 @@
 
         /* --- RESPONSIVE OPTIMIZADO PARA MÓVIL --- */
         @media (max-width: 768px) {
-            /* Navbar Móvil Compacta */
-            nav {
-                padding: 0;
-            }
-            .nav-container {
-                padding: 6px 15px; /* Menos padding vertical */
-                flex-direction: row;
-                justify-content: space-between;
-                height: 54px; /* Altura fija compacta */
-            }
-            .logo img {
-                height: 24px; /* Logo más pequeño */
-            }
-            .nav-links {
-                gap: 10px; /* Enlaces más juntos */
-                font-size: 10.5px; /* Texto más pequeño */
-                flex-wrap: nowrap; /* Evitar saltos de línea bruscos */
-            }
-            .nav-links a {
-                font-size: 10.5px;
-            }
-            main {
-                padding-top: 64px; /* Ajuste para la navbar reducida */
-            }
-
+            nav { padding: 0; }
+            .nav-container { padding: 6px 15px; flex-direction: row; justify-content: space-between; height: 54px; }
+            .logo img { height: 24px; }
+            .nav-links { gap: 10px; font-size: 10.5px; flex-wrap: nowrap; }
+            .nav-links a { font-size: 10.5px; }
+            main { padding-top: 64px; }
             h1 { font-size: 34px; letter-spacing: -1px; }
             h2 { font-size: 28px; }
             p.subtitle { font-size: 17px; }
-            
             .hero-images-grid { grid-template-columns: repeat(2, 1fr); }
             .pricing-grid { grid-template-columns: 1fr; gap: 30px; }
             .testimonial-grid { grid-template-columns: 1fr; }
@@ -696,6 +728,8 @@
             .marquee-item { font-size: 16px; }
             .modal-content { padding: 20px; }
             .btn-mini { padding: 6px 16px; font-size: 10px; width: 100%; box-sizing: border-box; }
+            .hormozi-offer { padding: 25px; margin: 40px 10px; }
+            .promo-title { font-size: 24px; }
         }
     </style>
 </head>
@@ -721,13 +755,14 @@
         <!-- 1. SECCIÓN INICIO -->
         <section id="inicio" class="page-section active">
             <div class="hero">
-                <h1>🧠💵<br>Mas estrategia<br>Menos impuestos<br>Más plata para tu negocio</h1>
+                <h1>💵<br>Mas estrategia<br>Menos impuestos<br>Más plata para tu negocio</h1>
                 <p class="subtitle">Si tiene un negocio online o digital, tu contador clásico te está <strong>costando caro.</strong> Descubre los vacíos legales que los "boomers" ignoran, te asesoramos con trucos y tips modernos para que pagues <strong>menos impuestos</strong> y mejores tu <strong>flujo de dinero mensual.</strong> <br> <br> Seamos realista: La mayoría de los contadores en Chile no estan interesados en <strong>entender los nuevos modelos de negocio digitales por que no les afecta, ellos siguen cobrando lo mismo.</strong> Cuando les hablas de Dropshipping, ingresos por Ads, o pagos en dólares por Stripe, se encojen de hombros creen que no afecta en nada.
 ¿El resultado? No rebajan tus gastos digitales (como ese software de $100 USD/mes o tus campañas de Ads), pagas <strong>IVA de más,</strong> y en la Operación Renta te llevas una sorpresa terrible.
 <br><br><strong><em>"No vendemos contabilidad. Vendemos paz mental y estrategias legales para que el fisco no se lleve el dinero que tanto te costó ganar"</em></strong>  </p>
                 <a onclick="switchTab('contacto')" class="btn">Agendar Asesoría Gratis (30 min)</a>
                 <p style="margin-top: 15px; font-size: 13px; color: var(--text-muted);">En esta primera asesoría gratuita puedes resolver todas tus dudas <strong>(solo hay cupos 4 al mes).</strong> </p>
                 
+                <!-- Las 4 fotos encapsuladas estilo Apple -->
                 <div class="hero-images-grid">
                     <div class="capsule-img" style="background-image: url('image_981217.jpg');"></div>
                     <div class="capsule-img" style="background-image: url('image_980de1.jpg');"></div>
@@ -765,7 +800,7 @@
                         </div>
                         
                         <div style="text-align: center; margin-bottom: 25px;">
-                            <button class="btn-mini" onclick="openModal()">Ver ejemplo de reporte</button>
+                            <button class="btn-mini" onclick="openModal('exampleModal')">Ver ejemplo de reporte</button>
                         </div>
 
                         <div class="total-value">
@@ -790,6 +825,32 @@
                     </div>
                 </div>
 
+                <!-- SECCIÓN PROMOCIONAL (HORMOZI STYLE) -->
+                <div class="hormozi-offer">
+                    <div class="promo-grid">
+                        <div class="promo-tag">¿Recién comenzando tu aventura digital?</div>
+                        <div class="promo-title">OFERTA DE LANZAMIENTO:<br>Creamos tu empresa GRATIS.</div>
+                        <p style="font-size: 17px; margin-bottom: 10px;">Si emites <strong>menos de 5 documentos al mes</strong>, el precio del Plan Inteligente baja a solo <strong>1 UF mensual.</strong></p>
+                        
+                        <div style="background: #f5f5f7; padding: 25px; border-radius: 18px; border-left: 5px solid #34c759;">
+                            <p style="margin-bottom: 15px;">🚀 <strong>EL GRAND SLAM:</strong> Si aseguras tu éxito pagando 3 meses adelantados, te entregamos:</p>
+                            <ul style="list-style: none; padding-left: 0; font-size: 15px; line-height: 1.8;">
+                                <li>✅ Constitución de Empresa <span class="value-pill">$100.000</span></li>
+                                <li>✅ Inicio de Actividades + Habilitación Facturación <span class="value-pill">$30.000</span></li>
+                                <li>✅ Capacitación Personalizada de Operación SII <span class="value-pill">$20.000</span></li>
+                                <li style="margin-top: 10px; font-weight: 800; font-size: 18px; color: #34c759;">TODO ESTO POR: $0</li>
+                            </ul>
+                        </div>
+                        
+                        <p style="font-size: 14px; color: #ff3b30; font-weight: 700; margin-top: 10px;">
+                            ⚠️ CRÍTICO: Solo habilitamos 2 promociones de este tipo al mes para garantizar que tu empresa quede perfecta desde el día uno.
+                        </p>
+                        <div class="text-center mt-4">
+                            <button class="btn" style="background: #34c759;" onclick="switchTab('contacto')">Quiero uno de los 2 cupos</button>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="explanation-capsule">
                     <h3>¿Por que el plan inteligente esta a ese precio?</h3>
                     <p>Buena pregunta, primero que todo al ser un asesor online no pago una oficina lujosa en Las Condes ni tengo secretarias. Soy un asesor tributario que opera 100% digital. Mis costos operativos son mínimos y prefiero traspasar ese ahorro a tu bolsillo por el momento, ademas he diseñado un sistema donde la carga técnica pesada está automatizada.</p>
@@ -800,7 +861,7 @@
                 </div>
             </div>
 
-            <!-- TESTIMONIOS -->
+            <!-- SECCIÓN TESTIMONIOS -->
             <div class="testimonials-section">
                 <h2>TESTIMONIOS ¿Qué dicen nuestros clientes?</h2>
                 <div class="testimonial-grid">
@@ -859,7 +920,6 @@
                             <span class="marquee-item">Freelancers</span>
                             <span class="marquee-item">Cursos Online</span>
                             <span class="marquee-item">Mentorías y Coaching</span>
-                            <!-- Duplicado -->
                             <span class="marquee-item">Dropshipping</span>
                             <span class="marquee-item">E-commerce</span>
                             <span class="marquee-item">SaaS</span>
@@ -884,18 +944,22 @@
                         <h4>Buscas inventar números o evadir:</h4>
                         <p>No arriesgo a mis clientes, yo me especializo en optimización tributaria legal. Si tu plan es ocultar ingresos o hacer cosas fuera de la ley, hay miles de contadores "de la vieja escuela" que se arriesgan por ti. Yo uso la ley a tu favor para que duermas tranquilo.</p>
                     </div>
+
                     <div class="not-for-you-item">
                         <h4>Tienes un negocio 100% físico y análogo:</h4>
                         <p>Si facturas en papel o tienes procesos manuales del siglo pasado, no soy tu mejor opción. Mi sistema está diseñado para negocios digitales.</p>
                     </div>
+
                     <div class="not-for-you-item">
                         <h4>Ves la contabilidad como un "gasto" y no como una inversión:</h4>
                         <p>Si te duele pagar $59.000 por un servicio que te puede ahorrar impuestos, evitar multas y bloqueos, mejorar tu flujo de caja y dar claridad de tus finanzas, entonces todavía no entiendes lo que es tener un negocio de verdad.</p>
                     </div>
+
                     <div class="not-for-you-item">
                         <h4>No usas tecnología:</h4>
                         <p>Si no sabes usar una videollamada, WhatsApp o plataformas digitales para subir tu información, mi metodología de trabajo te va a frustrar. Yo automatizo lo aburrido para enfocarme en lo importante.</p>
                     </div>
+
                     <div class="not-for-you-item" style="margin-bottom: 0;">
                         <h4>Buscas al contador "más barato" del mercado:</h4>
                         <p>El contador más barato suele ser el que más caro te sale cuando el SII te fiscaliza (multas, bloqueos de ventas, dolores de cabeza). Yo cobro por el valor de mi asesoría y el flujo de dinero que pongo de vuelta en tu bolsillo, no por llenar un formulario.</p>
@@ -918,12 +982,13 @@
         <section id="regalo" class="page-section">
             <div class="lead-magnet-box">
                 <h2>El video que el SII<br>no quiere que veas.</h2>
-                <p class="subtitle">7 secretos 100% legales para bajar los impuestos de negocio digital o negocio online. Déjanos tu correo y te lo mandamos apenas se suba.</p>
-                <form onsubmit="event.preventDefault(); alert('¡Inscrito! Te avisaremos apenas el canal de YouTube esté listo.');" class="form-group">
-                    <input type="text" placeholder="Tu nombre" required>
-                    <input type="email" placeholder="Tu mejor correo" required>
-                    <button type="submit" class="btn">Quiero el Video Gratis</button>
-                </form>
+                <p class="subtitle" style="margin-bottom: 20px;">7 secretos 100% legales para bajar los impuestos de negocio digital o negocio online. Déjanos tu correo y te lo mandamos apenas se suba.</p>
+                
+                <div class="text-center" style="margin-top: 40px;">
+                    <a href="https://preview.mailerlite.io/forms/2227933/183158679093118575/share" target="_blank" class="btn" style="padding: 16px 40px; font-weight: 600; font-size: 18px;">
+                        click aquí
+                    </a>
+                </div>
             </div>
         </section>
 
@@ -954,30 +1019,42 @@
             </div>
         </section>
 
-        <!-- 4. SECCIÓN HISTORIA -->
+        <!-- 4. SECCIÓN MI HISTORIA -->
         <section id="historia" class="page-section">
             <h2>Hola, soy Dyllan Fabrega.</h2>
             <p class="subtitle">Y sí, soy Contador Auditor de la PUCV.</p>
+            
             <div class="story-container">
                 <img src="image_97b424.jpg" alt="Dyllan Fabrega" class="history-profile-pic">
+                
                 <p>Si estas aqui probablemente te estes preguntando ¿Por que debería elegir a este tipo para que me ayude a pagar mis impuestos? Te daré la respuesta corta: Porque el sistema contable tradicional está roto para los negocios digitales.</p>
+                
                 <p>Trabajé 2 años en empresas de contabilidad tradicionales. Ahí me percaté de algo casi terrorífico: <strong><em>los contadores clásicos, de mucha edad, desconocían por completo las formas en que tributan las empresas digitales de hoy.</em></strong></p>
+                
                 <p>No saben cómo se rinde un gasto de Facebook Ads sin factura chilena, no entienden el modelo de dropshipping de Shopify, ni cómo un coach online recibe pagos por Stripe y así otros 100 pequeños detalles. <strong>¿El resultado? Hacían que los emprendedores pagaran de más al Estado por puro desconocimiento. (Entre $70.000 y $185.000 al mes en el peor de los casos)</strong></p>
+                
                 <p>Por eso creé esta consultora. <strong>Mi objetivo es que los negocios online en Chile paguen la menor cantidad de impuestos posibles de forma 100% legal</strong> y de esta forma con las dinero en la cuneta corriente puedan crecer e impulsar su empresa al siguiente nivel y por consecuencia mejorar la economía del país. </p>
+                
                 <p>Lo que yo vendo no es "hacer contabilidad". Lo que yo te vendo es que vas a <strong>ahorrar dinero y ganar flujo de caja</strong> gracias a que conozco los secretos y trucos modernos que sí funcionan.</p>
+
+                <!-- SECCIÓN DE VALIDACIÓN -->
                 <div class="validation-capsule">
                     <p style="font-weight: 600; margin-bottom: 15px;">Validación de Título Profesional</p>
                     <p>Puedes validar mi título profesional en la página oficial de la PUCV haciendo clic aquí:</p>
                     <a href="https://certificados.ucv.cl" target="_blank" class="btn" style="font-size: 14px; margin-bottom: 20px;">certificados.ucv.cl</a>
+                    
                     <div style="text-align: left; background: white; padding: 15px; border-radius: 12px; display: inline-block; margin-bottom: 20px; border: 1px solid #eee;">
                         <p style="margin-bottom: 5px;"><strong>Número de certificado:</strong> 1721697</p>
                         <p style="margin-bottom: 0;"><strong>Verificador:</strong> cd0f243d90</p>
                     </div>
+
                     <hr style="border: 0; border-top: 1px solid #d2d2d7; margin: 20px 0;">
+                    
                     <a href="https://www.linkedin.com/in/dyllan-fabrega" target="_blank" class="btn btn-outline" style="width: 100%; font-size: 14px;">
                         Ver mi Perfil en LinkedIn
                     </a>
                 </div>
+
                 <div class="text-center mt-4">
                     <a onclick="switchTab('contacto')" class="btn">Hablemos de tu negocio</a>
                 </div>
@@ -988,15 +1065,27 @@
         <section id="contacto" class="page-section">
             <h2>Escríbenos.</h2>
             <p class="subtitle">Contestamos rápido (a menos que estemos salvando a un cliente de una fiscalización).</p>
+
             <div class="story-container text-center" style="max-width: 500px;">
-                <p style="font-size: 20px; font-weight: 600; margin-bottom: 30px;">Agendemos una asesoría de 30 minutos 100% gratis donde resolveré todas tus dudas (Solo 4 cupos al mes).</p>
-                <a href="https://wa.me/56971902656" target="_blank" class="btn" style="width: 100%; margin-bottom: 15px; background-color: #25D366;">
-                    WhatsApp +569 7190 2656
+                <p style="font-size: 18px; font-weight: 600; margin-bottom: 25px;">Agendemos una asesoría de 30 minutos 100% gratis donde resolveré todas tus dudas (Solo 4 cupos al mes).</p>
+                
+                <a href="https://preview.mailerlite.io/forms/2227933/183156122573603948/share" target="_blank" class="btn" style="width: 100%; margin-bottom: 40px; background-color: var(--apple-blue); font-size: 18px; font-weight: 600;">
+                    click aquí para asesoría gratuita
                 </a>
-                <a href="mailto:Dyllan.fabrega@gmail.com" class="btn btn-outline" style="width: 100%; margin-bottom: 15px;">
+
+                <hr style="border: 0; border-top: 1px solid #eee; margin-bottom: 30px;">
+                
+                <p style="font-size: 14px; font-weight: 600; margin-bottom: 20px; color: var(--text-muted);">OTRAS VÍAS DE CONTACTO DIRECTO</p>
+                
+                <a href="https://wa.me/56971902656" target="_blank" class="btn btn-neutral" style="width: 100%; margin-bottom: 15px;">
+                    Hablar por WhatsApp +569 7190 2656
+                </a>
+                
+                <a href="mailto:Dyllan.fabrega@gmail.com" class="btn btn-neutral" style="width: 100%; margin-bottom: 15px;">
                     Dyllan.Fabrega@gmail.com
                 </a>
-                <a href="https://instagram.com/dyllan_fabrega" target="_blank" class="btn btn-outline" style="width: 100%; color: #1d1d1f; border-color: #d2d2d7;">
+                
+                <a href="https://instagram.com/dyllan_fabrega" target="_blank" class="btn btn-neutral" style="width: 100%; margin-bottom: 15px; color: var(--text-main);">
                     Instagram @dyllan_fabrega
                 </a>
             </div>
